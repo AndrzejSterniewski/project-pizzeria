@@ -83,6 +83,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     }
     initAccordion() {
       const thisProduct = this;
@@ -143,8 +144,18 @@
           const option = param.options[optionId];
           console.log('optionId', optionId, option);
 
+          // [NEW] adding image
+          if (formData[paramId] && formData[paramId].includes(optionId)) {
+            const optionImage = thisProduct.imageWrapper.querySelector('.paramId-optionId');
+            console.log('optionImage', optionImage);
+            if (optionImage) {
+              optionImage.classNames.menuProduct.imageVisible;
+            }
+          }
+
           // check if there is param with a name of paramId in formData and if it includes optionId
           if (formData[paramId] && formData[paramId].includes(optionId)) {
+
             // check if the option is not default
             if (!option.default) {
               // add option price to price variable
@@ -163,37 +174,37 @@
     }
   }
 
-    const app = {
-      initMenu: function () {
-        const thisApp = this;
-        console.log('thisApp.data:', thisApp.data);
+  const app = {
+    initMenu: function () {
+      const thisApp = this;
+      console.log('thisApp.data:', thisApp.data);
 
-        // const testProduct = new Product();
-        // console.log('testProduct:', testProduct);
+      // const testProduct = new Product();
+      // console.log('testProduct:', testProduct);
 
-        for (let productData in thisApp.data.products) {
-          new Product(productData, thisApp.data.products[productData]);
-        }
-      },
+      for (let productData in thisApp.data.products) {
+        new Product(productData, thisApp.data.products[productData]);
+      }
+    },
 
-      initData: function () {
-        const thisApp = this;
+    initData: function () {
+      const thisApp = this;
 
-        thisApp.data = dataSource;
-      },
+      thisApp.data = dataSource;
+    },
 
-      init: function () {
-        const thisApp = this;
-        console.log('*** App starting ***');
-        console.log('thisApp:', thisApp);
-        console.log('classNames:', classNames);
-        console.log('settings:', settings);
-        console.log('templates:', templates);
+    init: function () {
+      const thisApp = this;
+      console.log('*** App starting ***');
+      console.log('thisApp:', thisApp);
+      console.log('classNames:', classNames);
+      console.log('settings:', settings);
+      console.log('templates:', templates);
 
-        thisApp.initData();
-        thisApp.initMenu();
-      },
-    };
+      thisApp.initData();
+      thisApp.initMenu();
+    },
+  };
 
   app.init();
-  }
+}
