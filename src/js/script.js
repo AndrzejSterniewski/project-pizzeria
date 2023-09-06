@@ -207,24 +207,28 @@
       const newValue = parseInt(value);
 
       /* TODO: Add validation */
-      if(thisWidget.value !== newValue && !isNaN(newValue)) {
-      thisWidget.value = newValue;
+      if (thisWidget.value !== newValue && !isNaN(newValue)) {
+        if (newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
+          thisWidget.value = newValue;
+        }
       }
       thisWidget.input.value = thisWidget.value;
+
+
     }
     initActions() {
       const thisWidget = this;
 
-      thisWidget.input.addEventListener('change', function() {
+      thisWidget.input.addEventListener('change', function () {
         thisWidget.setValue(thisWidget.input);
       })
-      thisWidget.linkDecrease.addEventListener('click', function(event){
+      thisWidget.linkDecrease.addEventListener('click', function (event) {
         event.preventDefault();
-        thisWidget.setValue(thisWidget.value-1);
+        thisWidget.setValue(thisWidget.value - 1);
       })
-      thisWidget.linkIncrease.addEventListener('click', function(event){
+      thisWidget.linkIncrease.addEventListener('click', function (event) {
         event.preventDefault();
-        thisWidget.setValue(thisWidget.value+1);
+        thisWidget.setValue(thisWidget.value + 1);
       })
     }
   }
