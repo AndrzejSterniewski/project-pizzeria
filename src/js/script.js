@@ -157,6 +157,7 @@
       thisProduct.cartButton.addEventListener('click', function (event) {
         event.preventDefault();
         thisProduct.processOrder();
+        thisProduct.addToCart();
       });
     }
     processOrder() {
@@ -222,6 +223,20 @@
         thisProduct.processOrder();
       })
     }
+    addToCart() {
+      const thisProduct = this;
+
+      app.cart.add(thisProduct);
+    }
+    prepareCartProduct() {
+      const thisProduct = this;
+
+      const productSummary = {
+        id : thisProduct.id,
+        name : thisProduct.name,
+        amount : thisProduct.amount,
+      };
+    }
   }
 
   class AmountWidget {
@@ -285,7 +300,7 @@
   }
 
   class Cart {
-    constructor(element){
+    constructor(element) {
       const thisCart = this;
 
       thisCart.products = [];
@@ -295,7 +310,7 @@
       console.log('new Cart', thisCart);
     }
 
-    getElements(element){
+    getElements(element) {
       const thisCart = this;
 
       thisCart.dom = {};
@@ -304,14 +319,19 @@
       thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
     }
 
-    initActions(){
+    initActions() {
       const thisCart = this;
 
-      thisCart.dom.toggleTrigger.addEventListener('click', function() {
+      thisCart.dom.toggleTrigger.addEventListener('click', function () {
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       })
-
     }
+      add(menuProduct) {
+        // const thisCart = this;
+
+        console.log('adding product', menuProduct);
+      }
+
   }
   const app = {
     initMenu: function () {
@@ -332,7 +352,7 @@
       thisApp.data = dataSource;
     },
 
-    initCart: function() {
+    initCart: function () {
       const thisApp = this;
 
       const cartElem = document.querySelector(select.containerOf.cart);
