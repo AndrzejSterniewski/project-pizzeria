@@ -120,7 +120,6 @@
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
       thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
       thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
-
     }
     initAccordion() {
       const thisProduct = this;
@@ -208,12 +207,11 @@
             }
           }
         }
-
-        /* mulitply price by amount */
-        price *= thisProduct.amountWidget.value;
-        // update calculated price in the HTML
-        thisProduct.priceElem.innerHTML = price;
       }
+      /* mulitply price by amount */
+      price *= thisProduct.amountWidget.value;
+      // update calculated price in the HTML
+      thisProduct.priceElem.innerHTML = price;
     }
     initAmountWidget() {
       const thisProduct = this;
@@ -229,13 +227,13 @@
       app.cart.add(thisProduct);
     }
     prepareCartProduct() {
-      const thisProduct = this;
+      //  const thisProduct = this;
 
-      const productSummary = {
-        id : thisProduct.id,
-        name : thisProduct.name,
-        amount : thisProduct.amount,
-      };
+      // const productSummary = {
+      //   id : thisProduct.id,
+      //   name : thisProduct.name,
+      //   amount : thisProduct.amount,
+      // };
     }
   }
 
@@ -270,11 +268,10 @@
       if (thisWidget.value !== newValue && !isNaN(newValue)) {
         if (newValue >= settings.amountWidget.defaultMin && newValue <= settings.amountWidget.defaultMax) {
           thisWidget.value = newValue;
-
+          thisWidget.announce();
         }
       }
       thisWidget.input.value = thisWidget.value;
-      thisWidget.announce();
     }
     initActions() {
       const thisWidget = this;
@@ -326,11 +323,11 @@
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       })
     }
-      add(menuProduct) {
-        // const thisCart = this;
+    add(menuProduct) {
+      // const thisCart = this;
 
-        console.log('adding product', menuProduct);
-      }
+      console.log('adding product', menuProduct);
+    }
 
   }
   const app = {
