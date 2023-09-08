@@ -230,17 +230,49 @@
       app.cart.add(thisProduct.prepareCartProduct());
     }
     prepareCartProduct() {
-       const thisProduct = this;
+      const thisProduct = this;
 
       const productSummary = {
-        id : thisProduct.id,
-        name : thisProduct.data.name,
-        amount : thisProduct.amountWidget.value,
-        priceSingle : thisProduct.priceSingle,
-        price : thisProduct.priceSingle * thisProduct.amountWidget.value,
-        params : {},
+        id: thisProduct.id,
+        name: thisProduct.data.name,
+        amount: thisProduct.amountWidget.value,
+        priceSingle: thisProduct.priceSingle,
+        price: thisProduct.priceSingle * thisProduct.amountWidget.value,
+        params: {},
       };
       return productSummary;
+    }
+    prepareCartProductParams() {
+      const thisProduct = this;
+
+      // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      const params = {};
+
+      // for every category (param)...
+      for (let paramId in thisProduct.data.params) {
+        // determine param value, e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... }
+        const param = thisProduct.data.params[paramId];
+
+        // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
+        params[paramId] = {
+          label: param.label,
+          options: {}
+        }
+
+        // for every option in this category
+        for (let optionId in param.options) {
+          // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+          const option = param.options[optionId];
+          const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
+          // check if there is param with a name of paramId in formData and if it includes optionId
+          if (optionSelected) {
+            params[paramId].options = option;
+
+          }
+        }
+      }
+      return params;
     }
   }
 
