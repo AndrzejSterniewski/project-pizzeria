@@ -361,17 +361,17 @@
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
       })
     }
-    add(menuProduct) {
+    add(cartProduct) {
       const thisCart = this;
 
       // /* generate HMTL based on template */
-      const generatedHTML = templates.menuProduct(menuProduct);
+      const generatedHTML = templates.cartProduct(cartProduct);
       // /* create element using utils.createElementFromHTML */
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
       // /* add element */
       thisCart.dom.productList.appendChild(generatedDOM);
 
-      console.log('adding product', menuProduct);
+      console.log('adding product', cartProduct);
     }
 
   }
