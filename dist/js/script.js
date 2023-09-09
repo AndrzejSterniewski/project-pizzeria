@@ -362,15 +362,14 @@
       })
     }
     add(menuProduct) {
-      // const thisCart = this;
+      const thisCart = this;
 
-      // // /* generate HMTL based on template */
-      // const generatedHTML = templates.menuProduct(thisProduct.menuProduct);
-      // // /* create element using utils.createElementFromHTML */
-      // const generatedDOM = utils.createDOMFromHTML(generatedHTML);
-      // // /* add element */
-      // thisCart.dom.productList.appendChild(generatedDOM);
-
+      // /* generate HMTL based on template */
+      const generatedHTML = templates.menuProduct(menuProduct);
+      // /* create element using utils.createElementFromHTML */
+      const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      // /* add element */
+      thisCart.dom.productList.appendChild(generatedDOM);
 
       console.log('adding product', menuProduct);
     }
@@ -379,10 +378,6 @@
   const app = {
     initMenu: function () {
       const thisApp = this;
-      //  console.log('thisApp.data:', thisApp.data);
-
-      // const testProduct = new Product();
-      // console.log('testProduct:', testProduct);
 
       for (let productData in thisApp.data.products) {
         new Product(productData, thisApp.data.products[productData]);
