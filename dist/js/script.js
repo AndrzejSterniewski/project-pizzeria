@@ -266,9 +266,7 @@
           const optionSelected = formData[paramId] && formData[paramId].includes(optionId);
           // check if there is param with a name of paramId in formData and if it includes optionId
           if (optionSelected) {
-            // console.log('option', option);
-            // console.log('optionId', optionId);
-            params[paramId].options = option;
+            params[paramId].options[optionId] = option.label;
           }
         }
       }
@@ -413,7 +411,7 @@
 
       thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
       thisCartProduct.dom.amountWidget.addEventListener('updated', function () {
-        thisCartProduct.amount = thisCartProduct.amountWidget;
+        thisCartProduct.amount = thisCartProduct.dom.amountWidget;
         thisCartProduct.price = thisCartProduct.dom.price;
         thisCartProduct.dom.price = thisCartProduct.price;
       })
