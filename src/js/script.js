@@ -398,7 +398,7 @@
 
       for(let product of thisCart.products){
         /* how to count? */
-        totalNumber += thisCart.products;
+        totalNumber += thisCart.products.length;
         subtotalPrice += product.price;
       }
       if(thisCart.products.length > 0) {
@@ -442,9 +442,9 @@
 
       thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
       thisCartProduct.dom.amountWidget.addEventListener('updated', function () {
-        thisCartProduct.dom.amountWidget = thisCartProduct.amountWidget;
-        thisCartProduct.price = thisCartProduct.dom.price;
-        thisCartProduct.dom.price = thisCartProduct.price;
+        thisCartProduct.amount = thisCartProduct.amountWidget.value;
+        thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;
+        thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
       })
     }
 
