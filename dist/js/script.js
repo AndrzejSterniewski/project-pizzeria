@@ -417,7 +417,11 @@
       thisCart.dom.totalNumber.innerHTML = totalNumber;
       for (const elem of thisCart.dom.totalPrice) {
         elem.innerHTML = thisCart.totalPrice;
+        if (thisCart.products.length == 0) {
+          elem.innerHTML = 0;
+        }
       }
+
     }
     remove(cartProduct) {
       const thisCart = this;
