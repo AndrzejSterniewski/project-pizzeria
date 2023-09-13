@@ -405,6 +405,7 @@
       thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
       thisCart.totalNumber = 0;
       thisCart.subtotalPrice = 0;
+      thisCart.totalPrice = 0;
 
       for (let product of thisCart.products) {
         thisCart.totalNumber += product.amount;
@@ -420,9 +421,6 @@
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
       for (const elem of thisCart.dom.totalPrice) {
         elem.innerHTML = thisCart.totalPrice;
-        if (thisCart.products.length == 0) {
-          elem.innerHTML = 0;
-        }
       }
     }
     remove(cartProduct) {
@@ -438,8 +436,8 @@
 
       const url = settings.db.url + '/' + settings.db.orders;
       const payload = {
-        address: thisCart.adress,
-        phone: thisCart.phone,
+        address: thisCart.dom.adress.value,
+        phone: thisCart.dom.phone.value,
         totalPrice: thisCart.totalPrice,
         subtotalPrice: thisCart.subtotalPrice,
         totalNumber: thisCart.totalNumber,
