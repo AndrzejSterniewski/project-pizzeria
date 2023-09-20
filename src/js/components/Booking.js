@@ -3,30 +3,31 @@ import AmountWidget from './AmountWidget.js';
 
 class Booking {
     constructor(boookingElem) {
-        const thisBooking = this;
+        const thisWidget = this;
 
-        thisBooking.render(boookingElem);
-        thisBooking.initWidgets();
+        thisWidget.render(boookingElem);
+        thisWidget.initWidgets();
     }
-
     render(boookingElem) {
-        const thisBooking = this;
+        const thisWidget = this;
 
         const generatedHTML = templates.bookingWidget();
-        thisBooking.dom = {};
-        thisBooking.dom.wrapper = boookingElem;
+        thisWidget.dom = {};
+        thisWidget.dom.wrapper = boookingElem;
         boookingElem.innerHTML = generatedHTML;
-        thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.widgets.booking.peopleAmount);
-        thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.widgets.booking.hoursAmount);
+        thisWidget.dom.peopleAmount = thisWidget.dom.wrapper.querySelector(select.widgets.booking.peopleAmount);
+        thisWidget.dom.hoursAmount = thisWidget.dom.wrapper.querySelector(select.widgets.booking.hoursAmount);
+        thisWidget.dom.datePicker = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
+        thisWidget.dom.hourPicker = thisWidget.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
     }
-
     initWidgets() {
-        const thisBooking = this;
+        const thisWidget = this;
 
-        thisBooking.initWidgets = new AmountWidget(thisBooking.dom.peopleAmount);
-        thisBooking.initWidgets = new AmountWidget(thisBooking.dom.hoursAmount);
+        thisWidget.initWidgets = new AmountWidget(thisWidget.dom.peopleAmount);
+        thisWidget.initWidgets = new AmountWidget(thisWidget.dom.hoursAmount);
+        thisWidget.initWidgets = new AmountWidget(thisWidget.dom.datePicker);
+        thisWidget.initWidgets = new AmountWidget(thisWidget.dom.hourPicker);
     }
-
     initAmountWidget() {
         const thisCartProduct = this;
 
