@@ -35,14 +35,17 @@ class BaseWidget {
     parseValue(value) {
         return parseInt(value);
     }
+
     isValid(value) {
         return !isNaN(value);
     }
+
     renderValue() {
         const thisWidget = this;
 
         thisWidget.dom.wrapper.innerHTML = thisWidget.value;
     }
+    
     announce() {
         const thisWidget = this;
 
