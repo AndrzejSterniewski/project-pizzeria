@@ -1,4 +1,4 @@
-import { select, templates, settings } from '../settings.js';
+import { select, templates, settings, classNames } from '../settings.js';
 import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 import DatePicker from './DatePicker.js';
@@ -11,6 +11,11 @@ class Booking {
         thisBooking.render(boookingElem);
         thisBooking.initWidgets();
         thisBooking.getData();
+
+        /* 2. NEW */
+        /* przygotować właściwość która ma przechowywać informacje i wybranym stoliku 
+        obiekt ?
+        */
     }
 
     getData() {
@@ -35,7 +40,6 @@ class Booking {
             ],
         };
 
-        //    console.log('getData params', params);
         const urls = {
             bookings: settings.db.url + '/' + settings.db.bookings
                 + '?' + params.booking.join('&'),
@@ -44,10 +48,9 @@ class Booking {
             eventsRepeat: settings.db.url + '/' + settings.db.events
                 + '?' + params.eventsRepeat.join('&')
         }
-        //    console.log('urls', urls);
 
         Promise.all([
-            fetch(urls.booking),
+            fetch(urls.bookings),
             fetch(urls.eventsCurrent),
             fetch(urls.eventsRepeat),
         ])
@@ -93,8 +96,6 @@ class Booking {
                 }
             }
         }
-
-        //    console.log(thisBooking.booked);
         thisBooking.updateDOM();
     }
 
@@ -108,7 +109,6 @@ class Booking {
         const startHour = utils.hourToNumber(hour);
 
         for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock += 0.5) {
-            console.log('loop', hourBlock);
 
             if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
                 thisBooking.booked[date][hourBlock] = [];
@@ -140,10 +140,10 @@ class Booking {
                 tableId = parseInt(tableId);
             }
 
-            if(
-                !allAvailable&&
+            if (
+                !allAvailable &&
                 thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
-            ){
+            ) {
                 table.classList.add(classNames.booking.tableBooked);
             } else {
                 table.classList.remove(classNames.booking.tableBooked);
@@ -155,20 +155,21 @@ class Booking {
         const thisBooking = this;
 
         const generatedHTML = templates.bookingWidget();
-        
+
         thisBooking.dom = {};
-        
+
         thisBooking.dom.wrapper = wrapper;
-        
+
         thisBooking.dom.wrapper.innerHTML = generatedHTML;
-        
+
         thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.widgets.booking.peopleAmount);
         thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.widgets.booking.hoursAmount);
-        
+
         thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
         thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
 
-        thisBooking.dom.tables = thisBooking.dom.wrapper.querySelector(select.widgets.booking.tables);
+        /* 3. get access to div with all tables */
+        thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.widgets.booking.tables);
     }
     initWidgets() {
         const thisBooking = this;
@@ -179,20 +180,33 @@ class Booking {
         thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
         thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
-        thisBooking.dom.wrapper.addEventListener('updated', function(){
+        thisBooking.dom.wrapper.addEventListener('updated', function () {
             thisBooking.updateDOM();
         })
-    }
-    // initAmountWidget() {
-    //     const thisCartProduct = this;
 
-    //     thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
-    //     thisCartProduct.dom.amountWidget.addEventListener('updated', function () {
-    //         thisCartProduct.amount = thisCartProduct.amountWidget.value;
-    //         thisCartProduct.price = thisCartProduct.amount * thisCartProduct.priceSingle;
-    //         thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
-    //     })
-    // }
+        /* 4. initTables after click on div with tables */
+        thisBooking.dom.tables.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            thisBooking.initTables(event);
+
+        })
+    }
+
+    initTables(event) {
+     //   const thisBooking = this;
+
+        if (event.target.classList.contains('tableBooked')) {
+            alert('table booked');
+        } else {
+
+
+
+
+            event.target.classList.add('selected');
+        }
+
+    }
 }
 
 export default Booking;
