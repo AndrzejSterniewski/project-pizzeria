@@ -11,11 +11,7 @@ class Booking {
         thisBooking.render(boookingElem);
         thisBooking.initWidgets();
         thisBooking.getData();
-
-        /* 2. NEW */
-        /* przygotować właściwość która ma przechowywać informacje i wybranym stoliku 
-        obiekt ?
-        */
+        thisBooking.selectedTable = null;
     }
 
     getData() {
@@ -135,7 +131,7 @@ class Booking {
         }
 
         for (let table of thisBooking.dom.tables) {
-            let tableId = table.getAttribute(settings.booking.tableIdAttribiute);
+            let tableId = table.getAttribute(settings.booking.tableIdAttribute);
             if (!isNaN(tableId)) {
                 tableId = parseInt(tableId);
             }
@@ -162,14 +158,14 @@ class Booking {
 
         thisBooking.dom.wrapper.innerHTML = generatedHTML;
 
-        thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.widgets.booking.peopleAmount);
-        thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.widgets.booking.hoursAmount);
+        thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
+        thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
 
         thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
         thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
 
-        /* 3. get access to div with all tables */
-        thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.widgets.booking.tables);
+        thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+        thisBooking.dom.floorPlan = thisBooking.dom.wrapper.querySelector(select.booking.floorPlan);
     }
     initWidgets() {
         const thisBooking = this;
@@ -185,26 +181,38 @@ class Booking {
         })
 
         /* 4. initTables after click on div with tables */
-        thisBooking.dom.tables.addEventListener('click', function (event) {
+        thisBooking.dom.floorPlan.addEventListener('click', function (event) {
             event.preventDefault();
-
             thisBooking.initTables(event);
-
-        })
+        });
     }
 
     initTables(event) {
-     //   const thisBooking = this;
+        const thisBooking = this;
 
-        if (event.target.classList.contains('tableBooked')) {
+        if (!event.target.classList.contains(classNames.booking.table))
+            return;
+
+        const table = event.target;
+        
+        if (table.classList.contains(classNames.booking.tableBooked)) {
             alert('table booked');
-        } else {
-
-
-
-
-            event.target.classList.add('selected');
+            return;
         }
+
+        const tableId = table.getAttribute(settings.booking.tableIdAttribute);
+        if (table.classList.contains(classNames.booking.tableSelected)) {
+            table.classList.remove(classNames.booking.tableSelected);
+            thisBooking.selectedTable = null;
+        } else {
+            if (thisBooking.selectedTable) {
+                const selectedTable = thisBooking.dom.floorPlan.querySelector(select.booking.tableSelected);
+                selectedTable.classList.remove(classNames.booking.tableSelected);
+            }
+            thisBooking.selectedTable = tableId;
+            table.classList.add(classNames.booking.tableSelected);
+        }
+
 
     }
 }

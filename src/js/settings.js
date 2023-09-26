@@ -23,6 +23,13 @@ export const select = {
         amountWidget: '.widget-amount',
         cartButton: '[href="#add-to-cart"]',
     },
+    booking: {
+        peopleAmount: '.people-amount',
+        hoursAmount: '.hours-amount',
+        tables: '.floor-plan .table',
+        floorPlan: '.floor-plan',
+        tableSelected: '.table.selected',
+    },
     widgets: {
         amount: {
             input: 'input.amount', // CODE CHANGED
@@ -37,11 +44,6 @@ export const select = {
             wrapper: '.hour-picker',
             input: 'input[type="range"]',
             output: '.output',
-        },
-        booking: {
-            peopleAmount: '.people-amount',
-            hoursAmount: '.hours-amount',
-            tables: '.floor-plan .table',
         },
         nav: {
             links: '.main-nav a',
@@ -78,6 +80,8 @@ export const classNames = {
     booking: {
         loading: 'loading',
         tableBooked: 'booked',
+        table: 'table',
+        tableSelected: 'selected',
     },
     nav: {
         active: 'active',
