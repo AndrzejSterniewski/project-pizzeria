@@ -170,9 +170,11 @@ class Booking {
         /* NEW */
         thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.cart.phone);
         thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.cart.address);
-        
+        thisBooking.dom.starters = thisBooking.dom.wrapper.querySelector(select.booking.starters);
+        thisBooking.dom.bookTableButton = thisBooking.dom.wrapper.querySelector(select.booking.bookTable);
     }
 
+    /* NEW */
     sendBooking() {
         const thisBooking = this;
 
@@ -182,7 +184,7 @@ class Booking {
            // data wybrana w datePickerze,
             hour: thisBooking.dom.hourPicker,
             // godzina wybrana w hourPickerze(w formacie HH: ss),
-            table: thisBooking.selectedTable,
+            table: thisBooking.selectedTable.value,
             // numer wybranego stolika(lub null jeśli nic nie wybrano),
             duration: thisBooking.dom.hoursAmount,
             // liczba godzin wybrana przez klienta,
@@ -196,9 +198,13 @@ class Booking {
         }
 
         console.log('payload', payload);
-        for (let prod of thisBooking.products) {
-            payload.starters.push(prod.getData());
-        }
+
+        thisBooking.starters.addEventListener('check', function(event){
+            event.target.checked ? thisBooking.starters.push(event.target.value) : thisBooking.starters.splice('event.target', 1);
+        });
+
+        console.log(thisBooking.dom.starters);
+
         const options = {
             method: 'POST',
             headers: {
@@ -233,6 +239,12 @@ class Booking {
             event.preventDefault();
             thisBooking.initTables(event);
         });
+
+        /* NEW */
+        thisBooking.dom.bookTableButton.addEventListener('click', function(event){
+            event.preventDefault();
+            thisBooking.sendBooking();
+        })
     }
 
     initTables(event) {
@@ -260,7 +272,6 @@ class Booking {
             thisBooking.selectedTable = tableId;
             table.classList.add(classNames.booking.tableSelected);
         }
-
 
     }
 }

@@ -29,6 +29,9 @@ export const select = {
         tables: '.floor-plan .table',
         floorPlan: '.floor-plan',
         tableSelected: '.table.selected',
+        /* NEW */
+        starters: '.starters',
+        bookTable: '.book-table',
     },
     widgets: {
         amount: {
