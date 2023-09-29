@@ -166,7 +166,55 @@ class Booking {
 
         thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
         thisBooking.dom.floorPlan = thisBooking.dom.wrapper.querySelector(select.booking.floorPlan);
+
+        /* NEW */
+        thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.cart.phone);
+        thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.cart.address);
+        
     }
+
+    sendBooking() {
+        const thisBooking = this;
+
+        const url = settings.db.url + '/' + settings.db.bookings;
+        const payload = {
+            date: thisBooking.dom.datePicker,
+           // data wybrana w datePickerze,
+            hour: thisBooking.dom.hourPicker,
+            // godzina wybrana w hourPickerze(w formacie HH: ss),
+            table: thisBooking.selectedTable,
+            // numer wybranego stolika(lub null jeśli nic nie wybrano),
+            duration: thisBooking.dom.hoursAmount,
+            // liczba godzin wybrana przez klienta,
+            ppl: thisBooking.dom.peopleAmount,
+            // liczba osób wybrana przez klienta,
+            phone: thisBooking.dom.phone,
+            // numer telefonu z formularza,
+            address: thisBooking.dom.address,
+            // adres z formularza
+            starters: [],
+        }
+
+        console.log('payload', payload);
+        for (let prod of thisBooking.products) {
+            payload.starters.push(prod.getData());
+        }
+        const options = {
+            method: 'POST',
+            headers: {
+                'COntent-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+        };
+
+        fetch(url, options)
+            .then(function (response) {
+                return response.json();
+            }).then(function (parsedResponse) {
+                console.log('parsedResponse', parsedResponse);
+            });
+    }
+
     initWidgets() {
         const thisBooking = this;
 
@@ -194,7 +242,7 @@ class Booking {
             return;
 
         const table = event.target;
-        
+
         if (table.classList.contains(classNames.booking.tableBooked)) {
             alert('table booked');
             return;
