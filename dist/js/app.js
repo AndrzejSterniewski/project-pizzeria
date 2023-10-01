@@ -2,9 +2,10 @@ import { select, classNames, settings } from "./settings.js";
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import Home from "./components/Home.js";
 
 const app = {
-  initPages: function () {
+  initPages: function() {
     const thisApp = this;
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children;
@@ -42,7 +43,7 @@ const app = {
     }
   },
 
-  activatePage: function (pageId) {
+  activatePage: function(pageId) {
     const thisApp = this;
 
     /* add class "active" to matching pages, remove from non-matching */
@@ -64,7 +65,7 @@ const app = {
     }
   },
 
-  initMenu: function () {
+  initMenu: function() {
     const thisApp = this;
 
     for (let productData in thisApp.data.products) {
@@ -72,7 +73,7 @@ const app = {
     }
   },
 
-  initData: function () {
+  initData: function() {
     const thisApp = this;
 
     /* NEW AJAX*/
@@ -97,7 +98,7 @@ const app = {
 
   },
 
-  initCart: function () {
+  initCart: function() {
     const thisApp = this;
 
     const cartElem = document.querySelector(select.containerOf.cart);
@@ -110,15 +111,23 @@ const app = {
     });
   },
 
-  /* NEW CODE */
-  initBooking: function () {
+  initBooking: function() {
     const thisApp = this;
 
     const boookingElem = document.querySelector(select.containerOf.booking);
     thisApp.booking = new Booking(boookingElem);
   },
 
-  init: function () {
+
+  /* NEW */
+  initHome: function() {
+    const thisApp = this;
+
+    const homeElem = document.querySelector(select.containerOf.home);
+    thisApp.home = new Home(homeElem);
+  },
+
+  init: function() {
     const thisApp = this;
     // console.log('*** App starting ***');
     // console.log('thisApp:', thisApp);
@@ -130,6 +139,7 @@ const app = {
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initHome();
   },
 };
 
