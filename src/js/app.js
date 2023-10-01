@@ -54,6 +54,7 @@ const app = {
       //   page.classList.remove(classNames.pages.active);
       // }
       page.classList.toggle(classNames.pages.active, page.id == pageId);
+      // second argument is a condition to execute 1st argument
     }
 
     /* add class "active" to matching links, remove from non-matching */

@@ -11,7 +11,7 @@ class Home {
     render(wrapper) {
         const thisHome = this;
 
-        const generatedHTML = templates.homePage;
+        const generatedHTML = templates.homePage();
 
         thisHome.dom = {};
 
