@@ -36,6 +36,11 @@ export const select = {
         starters: '.starters',
         bookTable: '.book-table',
     },
+    home : {
+        options: '.main-options',
+        carousel: '.main-carousel',
+        gallery: '.main-gallery',
+    },
     widgets: {
         amount: {
             input: 'input.amount',
@@ -72,9 +77,6 @@ export const select = {
         price: '.cart__product-price',
         edit: '[href="#edit"]',
         remove: '[href="#remove"]',
-    },
-    home: {
-
     },
 };
 
