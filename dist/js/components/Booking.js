@@ -170,8 +170,8 @@ class Booking {
         /* NEW */
         thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.cart.phone);
         thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.cart.address);
-        thisBooking.dom.startersSelect = thisBooking.dom.wrapper.querySelector(select.booking.starters);
-        thisBooking.dom.bookTableButton = thisBooking.dom.wrapper.querySelector(select.booking.bookTable);
+        thisBooking.dom.startersSelect = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
+        thisBooking.dom.bookingForm = thisBooking.dom.wrapper.querySelector(select.booking.bookingForm);
     }
 
     /* NEW */
@@ -180,30 +180,33 @@ class Booking {
 
         const url = settings.db.url + '/' + settings.db.bookings;
         const payload = {
-            date: thisBooking.dom.datePicker,
+            date: thisBooking.dom.datePicker.value,
            // data wybrana w datePickerze,
-            hour: thisBooking.dom.hourPicker,
+            hour: thisBooking.dom.hourPicker.value,
             // godzina wybrana w hourPickerze(w formacie HH: ss),
-            table: thisBooking.selectedTable.value,
+            table: thisBooking.selectedTable,
             // numer wybranego stolika(lub null jeśli nic nie wybrano),
-            duration: thisBooking.dom.hoursAmount,
+            duration: thisBooking.dom.hoursAmount.value,
             // liczba godzin wybrana przez klienta,
-            ppl: thisBooking.dom.peopleAmount,
+            ppl: thisBooking.dom.peopleAmount.value,
             // liczba osób wybrana przez klienta,
-            phone: thisBooking.dom.phone,
+            phone: thisBooking.dom.phone.value,
             // numer telefonu z formularza,
-            address: thisBooking.dom.address,
+            address: thisBooking.dom.address.value,
             // adres z formularza
             starters: [],
         }
 
         console.log('payload', payload);
 
-        thisBooking.startersSelect.addEventListener('check', function(event){
-            event.target.checked ? thisBooking.starters.push(event.target.value) : thisBooking.starters.splice('event.target', 1);
+        for(let starter in thisBooking.dom.startersSelect) {
+            starter.input == true ? payload.starters.push(starter.input) : payload.starters.slice('starter.input', 1);
+        }
+
+        thisBooking.bookingForm.addEventListener('submit', function(event){
+        //    event.target.checked ? thisBooking.starters.push(event.target.value) : thisBooking.starters.splice('event.target', 1);
         });
 
-        console.log(thisBooking.dom.starters);
 
         const options = {
             method: 'POST',
@@ -241,6 +244,7 @@ class Booking {
         });
 
         /* NEW */
+        /* listen not on a button but all form */
         thisBooking.dom.bookTableButton.addEventListener('click', function(event){
             event.preventDefault();
             thisBooking.sendBooking();

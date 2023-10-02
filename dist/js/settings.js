@@ -33,8 +33,8 @@ export const select = {
         floorPlan: '.floor-plan',
         tableSelected: '.table.selected',
         /* NEW */
-        starters: '.starters',
-        bookTable: '.book-table',
+        starters: '.starters .checkbox',
+        bookingForm: '.booking-form',
     },
     home : {
         options: '.main-options',

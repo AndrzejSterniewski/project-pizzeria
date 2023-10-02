@@ -25,7 +25,20 @@ class Home {
     }
 
     initWidgets() {
-    //    const thisHome = this;
+        // const thisHome = this;
+
+        // const elem = thisHome.dom.carousel;
+        // const flkty = new Flickity(elem, {
+        //     // options
+        //     cellAlign: 'left',
+        //     contain: true
+        // });
+
+        // // element argument can be a selector string
+        // //   for an individual element
+        // const flkty = new Flickity(thisHome.dom.carousel, {
+        //     // options
+        // });
 
     }
 }
