@@ -21,25 +21,16 @@ class Home {
 
         thisHome.dom.options = thisHome.dom.wrapper.querySelector(select.home.options);
         thisHome.dom.carousel = thisHome.dom.wrapper.querySelector(select.home.carousel);
-        thisHome.dom.gallery = thisHome.dom.wrapper.querySelector(select.home.gallery);
     }
 
     initWidgets() {
-        // const thisHome = this;
+        const thisHome = this;
 
-        // const elem = thisHome.dom.carousel;
-        // const flkty = new Flickity(elem, {
-        //     // options
-        //     cellAlign: 'left',
-        //     contain: true
-        // });
-
-        // // element argument can be a selector string
-        // //   for an individual element
-        // const flkty = new Flickity(thisHome.dom.carousel, {
-        //     // options
-        // });
-
+        new Flickity(thisHome.dom.carousel, {
+            // options
+            cellAlign: 'left',
+            contain: true
+        });
     }
 }
 

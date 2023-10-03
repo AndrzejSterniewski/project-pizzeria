@@ -33,7 +33,7 @@ export const select = {
         floorPlan: '.floor-plan',
         tableSelected: '.table.selected',
         /* NEW */
-        starters: '.starters .checkbox',
+        starters: '.starters .checkbox input',
         bookingForm: '.booking-form',
     },
     home : {
@@ -57,7 +57,7 @@ export const select = {
             output: '.output',
         },
         nav: {
-            links: '.main-nav a',
+            links: '.main-nav a, .main-options a',
         },
     },
     cart: {

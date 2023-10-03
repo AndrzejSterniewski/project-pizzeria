@@ -266,10 +266,150 @@
   "bookings": [
     {
       "table": "1",
-      "phone": "",
+      "phone": "1532649",
       "address": "asdsad@sadsad",
       "starters": [],
       "id": 1
+    },
+    {
+      "table": "1",
+      "phone": "1532649",
+      "address": "asdsad@sadsad",
+      "starters": [],
+      "id": 2
+    },
+    {
+      "date": "2023-10-04",
+      "hour": "12:30",
+      "table": "1",
+      "phone": "1532649",
+      "address": "asdsad@sadsad",
+      "starters": [],
+      "id": 3
+    },
+    {
+      "date": "2023-10-03",
+      "hour": "12:00",
+      "table": null,
+      "ppl": 2,
+      "phone": "1532649",
+      "address": "asdsad@sadsad",
+      "starters": [],
+      "id": 4
+    },
+    {
+      "date": "2023-10-03",
+      "hour": "12:00",
+      "table": null,
+      "ppl": 5,
+      "phone": "1532649",
+      "address": "asdsad@sadsad",
+      "starters": [],
+      "id": 5
+    },
+    {
+      "date": "2023-10-03",
+      "hour": "12:00",
+      "table": null,
+      "ppl": 9,
+      "phone": "1532649",
+      "address": "asdsad@sadsad",
+      "starters": [],
+      "id": 6
+    },
+    {
+      "date": "2023-10-03",
+      "hour": "12:00",
+      "table": null,
+      "ppl": 9,
+      "phone": "1532649",
+      "address": "asdsad@sadsad",
+      "starters": [],
+      "id": 7
+    },
+    {
+      "date": "2023-10-03",
+      "hour": "12:00",
+      "table": null,
+      "duration": 3,
+      "ppl": 3,
+      "phone": "",
+      "address": "",
+      "starters": [
+        {},
+        {}
+      ],
+      "id": 8
+    },
+    {
+      "date": "2023-10-03",
+      "hour": "12:00",
+      "table": null,
+      "duration": 3,
+      "ppl": 3,
+      "phone": "",
+      "address": "",
+      "starters": [
+        {},
+        {}
+      ],
+      "id": 9
+    },
+    {
+      "date": "2023-10-03",
+      "hour": "12:00",
+      "table": null,
+      "duration": 1,
+      "ppl": 2,
+      "phone": "",
+      "address": "",
+      "starters": [
+        "water",
+        "bread"
+      ],
+      "id": 10
+    },
+    {
+      "date": "2023-10-04",
+      "hour": "14:00",
+      "table": "1",
+      "duration": 2,
+      "ppl": 3,
+      "phone": "",
+      "address": "asdsad@sadsad",
+      "starters": [
+        "water",
+        "bread"
+      ],
+      "id": 11
+    },
+    {
+      "date": "2023-10-03",
+      "hour": "12:00",
+      "table": null,
+      "duration": 4,
+      "ppl": 3,
+      "phone": "1532649",
+      "address": "asdsad@sadsad",
+      "starters": [
+        "water",
+        "bread"
+      ],
+      "id": 12
+    },
+    {
+      "date": "2023-10-04",
+      "hour": "14:30",
+      "table": "1",
+      "duration": 3,
+      "ppl": 3,
+      "phone": "1532649",
+      "address": "asdsad@sadsad",
+      "starters": [
+        "water",
+        "bread"
+      ],
+      "id": 13
     }
   ]
 }

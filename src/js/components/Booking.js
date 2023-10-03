@@ -180,15 +180,15 @@ class Booking {
 
         const url = settings.db.url + '/' + settings.db.bookings;
         const payload = {
-            date: thisBooking.dom.datePicker.value,
+            date: thisBooking.datePicker.value,
             // data wybrana w datePickerze,
-            hour: thisBooking.dom.hourPicker.value,
+            hour: thisBooking.hourPicker.value,
             // godzina wybrana w hourPickerze(w formacie HH: ss),
             table: thisBooking.selectedTable,
             // numer wybranego stolika(lub null jeśli nic nie wybrano),
-            duration: thisBooking.dom.hoursAmount.value,
+            duration: thisBooking.hoursAmount.value,
             // liczba godzin wybrana przez klienta,
-            ppl: thisBooking.dom.peopleAmount.value,
+            ppl: thisBooking.peopleAmount.value,
             // liczba osób wybrana przez klienta,
             phone: thisBooking.dom.phone.value,
             // numer telefonu z formularza,
@@ -197,9 +197,9 @@ class Booking {
             starters: [],
         }
 
-        for (let starter in thisBooking.dom.startersSelect) {
+        for (let starter of thisBooking.dom.startersSelect) {
             if(starter.checked == true) {
-                payload.starters.push(starter);
+                payload.starters.push(starter.value);
             } 
         }
 
@@ -220,6 +220,8 @@ class Booking {
                 return response.json();
             }).then(function (parsedResponse) {
                 console.log('parsedResponse', parsedResponse);
+
+                thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
             });
     }
 
@@ -275,7 +277,6 @@ class Booking {
             thisBooking.selectedTable = tableId;
             table.classList.add(classNames.booking.tableSelected);
         }
-
     }
 }
 
