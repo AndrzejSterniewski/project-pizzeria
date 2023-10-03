@@ -34,7 +34,7 @@ export const select = {
         tableSelected: '.table.selected',
         /* NEW */
         starters: '.starters .checkbox',
-        bookingForm: '.booking-form [type="submit"]',
+        bookingForm: '.booking-form',
     },
     home : {
         options: '.main-options',

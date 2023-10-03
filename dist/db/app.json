@@ -265,18 +265,11 @@
   ],
   "bookings": [
     {
-      "table": null,
-      "phone": "1532649",
+      "table": "1",
+      "phone": "",
       "address": "asdsad@sadsad",
       "starters": [],
       "id": 1
-    },
-    {
-      "table": null,
-      "phone": "1532649",
-      "address": "asdsad@sadsad",
-      "starters": [],
-      "id": 2
     }
   ]
 }

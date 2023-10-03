@@ -198,7 +198,9 @@ class Booking {
         }
 
         for (let starter in thisBooking.dom.startersSelect) {
-            starter.checked == true ? payload.starters.push(starter) : payload.starters.slice(starter, 1);
+            if(starter.checked == true) {
+                payload.starters.push(starter);
+            } 
         }
 
         console.log('payload', payload);
@@ -241,8 +243,8 @@ class Booking {
         });
 
         /* NEW */
-        /* listen not on a button but all form */
-        thisBooking.dom.bookingForm.addEventListener('click', function (event) {
+        /* listen not on a button but on a form (submit) */
+        thisBooking.dom.bookingForm.addEventListener('submit', function (event) {
             event.preventDefault();
             thisBooking.sendBooking();
         })
