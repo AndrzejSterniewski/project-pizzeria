@@ -1,0 +1,38 @@
+#home {
+body {
+    margin: auto;
+
+}
+    /* options */
+
+    .main-options {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+
+
+    .opening-hours {
+        background-color: $color-main;
+        text-align: center;
+    }
+
+    /* carousel */
+
+
+
+    /* gallery */
+
+    .gallery-container {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        flex: 0 0 33.3333%;
+    }
+
+}

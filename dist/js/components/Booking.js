@@ -95,7 +95,7 @@ class Booking {
         thisBooking.updateDOM();
     }
 
-    makeBooked(date, hour, duration, table) {
+    makeBooked(date, hour, duration, table ) {
         const thisBooking = this;
 
         if (typeof thisBooking.booked[date] == 'undefined') {
@@ -181,7 +181,7 @@ class Booking {
         const url = settings.db.url + '/' + settings.db.bookings;
         const payload = {
             date: thisBooking.dom.datePicker.value,
-           // data wybrana w datePickerze,
+            // data wybrana w datePickerze,
             hour: thisBooking.dom.hourPicker.value,
             // godzina wybrana w hourPickerze(w formacie HH: ss),
             table: thisBooking.selectedTable,
@@ -197,16 +197,13 @@ class Booking {
             starters: [],
         }
 
-        console.log('payload', payload);
-
-        for(let starter in thisBooking.dom.startersSelect) {
-            starter.input == true ? payload.starters.push(starter.input) : payload.starters.slice('starter.input', 1);
+        for (let starter in thisBooking.dom.startersSelect) {
+            starter.checked == true ? payload.starters.push(starter) : payload.starters.slice(starter, 1);
         }
 
-        thisBooking.bookingForm.addEventListener('submit', function(event){
-        //    event.target.checked ? thisBooking.starters.push(event.target.value) : thisBooking.starters.splice('event.target', 1);
-        });
+        console.log('payload', payload);
 
+        thisBooking.booked.payload;
 
         const options = {
             method: 'POST',
@@ -245,7 +242,7 @@ class Booking {
 
         /* NEW */
         /* listen not on a button but all form */
-        thisBooking.dom.bookTableButton.addEventListener('click', function(event){
+        thisBooking.dom.bookingForm.addEventListener('click', function (event) {
             event.preventDefault();
             thisBooking.sendBooking();
         })
