@@ -17,22 +17,26 @@
     display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        justify-content: space-between;
+    //    justify-content: space-between;
         align-items: center;
         align-content: center;
+        // overflow: hidden;
     }
     .main-row {
-        display: flex;
-    //    flex: 0 0 50%;
-        justify-content: space-between;
-        flex-direction: row;
+       display: flex;
+       justify-content: space-between;
+       flex-direction: row;
     }
     .main-image {
         padding: 10px;
         position: relative;
-        margin: auto;
-        width: 50%;
+    //    margin: auto;
+     //   width: 50%;
+     flex: 0 0 50%;
+     object-fit: contain;
+     height: 50%;
     }
+
     .main-image p {
         position: absolute;
         top: 50%;
@@ -41,11 +45,11 @@
         color: #ffffff;
     }
 
-    
-        
     .opening-hours {
         background-color: $color-main;
         text-align: center;
+        width: 100%;
+        flex: 0 0 50%;
     }
     
 
@@ -77,47 +81,46 @@
         padding: 10px;
     }
 
-
-
     /* gallery */
 
     .gallery-container {
         display: flex;
-        flex-direction: column;
+   //     flex-direction: column;
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
         align-content: center;
+        box-sizing: border-box;
 
         .row {
             display: flex;
-            flex: 0 0 33.3333%; 
+            height: 50%;
         }
 
         .gallery-image {
             margin: 5px;
+            flex: 0 0 33.3333%;
+            height: 100%;
+            position: relative;
         }
-        // .gallery-image:after{
-        //         content: '';
-        //         width: 100%;
-        //         height: 100%;
-        //         top: 20px;
-        //         left: 20px;
-        //         background: #33d9b2;
-        //         opacity: 0.3;
-        //         display: block;
-        //         position: absolute;
-        //         transition: all 1s; 
-        // }
 
+        .gallery-image::after {
+            content: '';
+            width: 100%;
+            height: 100%;
+            display: block;
+            background: #000000;
+            opacity: 0.5;
+            transition: all 1s;
+            position: absolute;
+            z-index: 1;
+        }
 
         .gallery-image img {
             width: 100%;
             height: 100%;
             display: block;
-            object-fit: content; 
+            object-fit: content;
         }
-        
     }
-
 }
