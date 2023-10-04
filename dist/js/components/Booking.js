@@ -167,14 +167,12 @@ class Booking {
         thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
         thisBooking.dom.floorPlan = thisBooking.dom.wrapper.querySelector(select.booking.floorPlan);
 
-        /* NEW */
         thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.cart.phone);
         thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.cart.address);
         thisBooking.dom.startersSelect = thisBooking.dom.wrapper.querySelectorAll(select.booking.starters);
         thisBooking.dom.bookingForm = thisBooking.dom.wrapper.querySelector(select.booking.bookingForm);
     }
 
-    /* NEW */
     sendBooking() {
         const thisBooking = this;
 
@@ -238,13 +236,12 @@ class Booking {
             thisBooking.updateDOM();
         })
 
-        /* 4. initTables after click on div with tables */
+        /* initTables after click on div with tables */
         thisBooking.dom.floorPlan.addEventListener('click', function (event) {
             event.preventDefault();
             thisBooking.initTables(event);
         });
 
-        /* NEW */
         /* listen not on a button but on a form (submit) */
         thisBooking.dom.bookingForm.addEventListener('submit', function (event) {
             event.preventDefault();

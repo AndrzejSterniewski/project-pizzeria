@@ -1,27 +1,81 @@
 #home {
-body {
-    margin: auto;
+    
+    text-transform: uppercase;
+    margin: 0;
 
-}
     /* options */
 
     .main-options {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: space-between;
-        text-align: center;
+        // display: flex;
+        // flex-wrap: wrap;
+        // flex-direction: column;
+        // justify-content: space-between;
+        // text-align: center;
+        // margin: 10px;
+    //    box-sizing: border-box;
 
+    display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        align-content: center;
+    }
+    .main-row {
+        display: flex;
+    //    flex: 0 0 50%;
+        justify-content: space-between;
+        flex-direction: row;
+    }
+    .main-image {
+        padding: 10px;
+        position: relative;
+        margin: auto;
+        width: 50%;
+    }
+    .main-image p {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #ffffff;
+    }
+
+    
+        
     .opening-hours {
         background-color: $color-main;
         text-align: center;
     }
-
-    }
+    
 
     
 
     /* carousel */
+    .main-carousel {
+        height: 500px;
+    }
+    .carousel-cell {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .carousel-image {
+        margin: auto;
+        flex: 0 0 50%;
+        width: 50%;
+    }
+    .carousel-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: content;
+    }
+    .carousel-text {
+        margin: auto;
+        flex: 0 0 50%;
+        padding: 10px;
+    }
 
 
 
@@ -33,7 +87,37 @@ body {
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
-        flex: 0 0 33.3333%;
+        align-content: center;
+
+        .row {
+            display: flex;
+            flex: 0 0 33.3333%; 
+        }
+
+        .gallery-image {
+            margin: 5px;
+        }
+        // .gallery-image:after{
+        //         content: '';
+        //         width: 100%;
+        //         height: 100%;
+        //         top: 20px;
+        //         left: 20px;
+        //         background: #33d9b2;
+        //         opacity: 0.3;
+        //         display: block;
+        //         position: absolute;
+        //         transition: all 1s; 
+        // }
+
+
+        .gallery-image img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: content; 
+        }
+        
     }
 
 }
