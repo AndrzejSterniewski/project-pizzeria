@@ -5,7 +5,7 @@ class Home {
         const thisHome = this;
 
         thisHome.render(homeElem);
-        thisHome.initWidgets();
+    //    thisHome.initWidgets();
     }
 
     render(wrapper) {

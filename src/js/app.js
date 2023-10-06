@@ -41,6 +41,7 @@ const app = {
         window.location.hash = '#/' + id;
       });
     }
+    thisApp.home.initWidgets();
   },
 
   activatePage: function(pageId) {
