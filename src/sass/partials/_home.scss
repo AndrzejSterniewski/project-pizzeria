@@ -45,6 +45,7 @@
         transform: translate(-50%, -50%);
         color: #ffffff;
         margin: auto;
+        transition: all 1s;
     }
 
     .main-image p {
@@ -57,19 +58,18 @@
         text-align: center;
         width: 100%;
         opacity: 0;
-        z-index: -1; 
+        z-index: -1;
+        transition: all 1s;
     }
 
     .main-image:hover h1{
         transform: translate(-50%, -100%);
-        transition: all 1s;
     }
 
     .main-image:hover p {
         transform: translate(-50%, -25%);
         opacity: 1;
         z-index: 1;
-        transition: all 1s;
     }
 
     .opening-hours {
@@ -89,6 +89,7 @@
         height: 100%;
         display: flex;
         flex-wrap: wrap;
+        padding: 55px;
     }
     .carousel-image {
         margin: auto;
