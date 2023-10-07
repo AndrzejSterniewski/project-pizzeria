@@ -105,6 +105,26 @@
         padding: 10px;
     }
 
+    .flickity-button {
+        display: none;
+      }
+
+    .flickity-page-dots {
+        bottom: 45px;
+      }
+
+    .flickity-page-dots .dot {
+        width: 12px;
+        height: 12px;
+        opacity: 1;
+        background: grey;
+        border: 2px solid white;
+    }
+    /* fill-in selected dot */
+    .flickity-page-dots .dot.is-selected {
+        background: #000000;
+    }
+
     /* gallery */
 
         .gallery-container {

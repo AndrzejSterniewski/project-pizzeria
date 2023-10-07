@@ -29,7 +29,8 @@ class Home {
         new Flickity(thisHome.dom.carousel, {
             // options
             cellAlign: 'left',
-            contain: true
+            contain: true,
+            autoPlay: true
         });
     }
 }
