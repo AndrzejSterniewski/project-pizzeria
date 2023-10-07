@@ -47,8 +47,28 @@
         margin: auto;
     }
 
-    .main-image h1:hover{
-        transform: translate(-20%, -20%);
+    .main-image p {
+        text-transform: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        color: #ffffff;
+        text-align: center;
+        width: 100%;
+        opacity: 0;
+        z-index: -1; 
+    }
+
+    .main-image:hover h1{
+        transform: translate(-50%, -100%);
+        transition: all 1s;
+    }
+
+    .main-image:hover p {
+        transform: translate(-50%, -25%);
+        opacity: 1;
+        z-index: 1;
         transition: all 1s;
     }
 
@@ -100,6 +120,7 @@
             flex: 0 0 33.3333%;
             height: 200px;
             position: relative;
+            margin: 5px;
         }
 
         .gallery-image::after {
@@ -112,6 +133,7 @@
             opacity: 0;
             position: absolute;
             transition: all 1s;
+            border-radius: 5px;
         }
 
         .gallery-image:hover::after{
